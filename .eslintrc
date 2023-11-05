@@ -43,7 +43,8 @@
     ],
     "simple-import-sort/exports": "error",
     "import/order": ["off"],
-    "@typescript-eslint/naming-convention": ["off"]
+    "@typescript-eslint/naming-convention": ["off"],
+    "import/prefer-default-export": ["off"]
   },
   "parserOptions": {
     "ecmaVersion": "latest",

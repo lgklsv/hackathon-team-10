@@ -1,0 +1,16 @@
+@import url('./colors.css');
+@import url('./variables.css');
+
+:root {
+  text-rendering: optimizelegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
