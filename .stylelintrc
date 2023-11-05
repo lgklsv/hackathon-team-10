@@ -1,0 +1,50 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-clean-order"],
+  "rules": {
+    "order/order": [
+      [
+        { "type": "at-rule", "name": "import" },
+        { "type": "at-rule", "name": "forward" },
+        { "type": "at-rule", "name": "use" },
+        "dollar-variables",
+        "at-variables",
+        "custom-properties",
+        { "type": "at-rule", "name": "custom-media" },
+        { "type": "at-rule", "name": "function" },
+        { "type": "at-rule", "name": "extend" },
+        { "type": "at-rule", "name": "include" },
+        "declarations",
+        { "type": "at-rule", "name": "media", "hasBlock": true },
+        {
+          "type": "rule",
+          "selector": "/^&::[\\w-]+/",
+          "hasBlock": true
+        },
+        "rules"
+      ],
+      {
+        "severity": "warning"
+      }
+    ],
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(_[a-z0-9]+)*$",
+      {
+        "message": "Expected selector class name to be underscore_case"
+      }
+    ],
+    "custom-property-pattern": [
+      "^([a-z][A-z0-9]*)(-[A-z0-9]+)*$",
+      {
+        "message": "Expected custom property name to be underscore_case"
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["define-mixin", "mixin", "mixin-content"]
+      }
+    ],
+    "unit-no-unknown": [true, { "ignoreUnits": ["--gap"] }],
+    "number-max-precision": 5
+  }
+}
