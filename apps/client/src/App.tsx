@@ -7,9 +7,9 @@ function App() {
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    fetch('/api')
-      .then((res) => res.text())
-      .then(setGreeting);
+    fetch('/api/test/654eb5a275673c260b8074d2')
+      .then((res) => res.json())
+      .then((res) => setGreeting(res.message));
   }, []);
 
   return (
