@@ -9,6 +9,7 @@ import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 import './maze.css'
 
 import { generateMaze, solve } from '@/entities/maze'
+import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow'
 
 import styles from './index.module.css'
 
@@ -103,6 +104,7 @@ export default function MazePage() {
 
   return (
     <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
+      <ModalWindow />
       <div className="setting">
         <label htmlFor="mazeSize">Size of maze (5-40):</label>
         <input
@@ -112,6 +114,7 @@ export default function MazePage() {
           max="40"
           defaultValue="10"
         />
+        ModalWindow
       </div>
       <div className="setting">
         <button type="button" onClick={handleUpdateSettings}>
