@@ -6,7 +6,7 @@ import { setModal } from '@/entities/menu/model/menuSlice'
 
 const ModalWindow = () => {
   const dispatch = useAppDispatch()
-  const isOpen = useAppSelector((state) => state.menuSlice.isOpen)
+  const isOpen = useAppSelector((state) => state.menu.isOpen)
   return (
     <div
       className={

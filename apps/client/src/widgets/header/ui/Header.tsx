@@ -2,12 +2,11 @@ import { setModal } from '@/entities/menu/model/menuSlice'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
 import SelectDifficulty from '@/shared/ui/Select/SelectDifficulty.tsx'
-
 import styles from './Header.module.css'
 
 export default function Header() {
   const dispatch = useAppDispatch()
-  const isOpen = useAppSelector((state) => state.menuSlice.isOpen)
+  const isOpen = useAppSelector((state) => state.menu.isOpen)
 
   return (
     <header className={styles.header}>
