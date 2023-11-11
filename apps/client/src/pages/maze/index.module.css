@@ -5,15 +5,4 @@
 
   width: 100%;
   height: calc(100vh - var(--header-height));
-
-  &__maze {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 500px;
-    height: 500px;
-
-    background-color: var(--bg-secondary);
-  }
 }

@@ -1,21 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useCallback } from 'react'
+
+import { MazeCanvas } from '@/widgets/maze'
 
 import styles from './index.module.css'
 
 export default function MazePage() {
-  const [greeting, setGreeting] = useState('')
-
-  useEffect(() => {
-    fetch('/api/test/654eb5a275673c260b8074d2')
-      .then((res) => res.json())
-      .then((res) => setGreeting(res.message))
-  }, [])
+  const draw = useCallback(
+    (ctx: CanvasRenderingContext2D | null, frameCount: number) => {
+      if (!ctx) return
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+      ctx.fillStyle = '#000000'
+      ctx.beginPath()
+      ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI)
+      ctx.fill()
+    },
+    []
+  )
 
   return (
     <div className={styles.root}>
-      <div className={styles.root__maze}>
-        <h1>{greeting}</h1>
-      </div>
+      <MazeCanvas draw={draw} />
     </div>
   )
 }

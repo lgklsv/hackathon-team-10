@@ -1,7 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
+import { mazeSlice } from '@/entities/maze'
 import { baseApi } from '@/shared/api'
 
 export const rootReducer = combineReducers({
-  [baseApi.reducerPath]: baseApi.reducer
+  [baseApi.reducerPath]: baseApi.reducer,
+  [mazeSlice.name]: mazeSlice.reducer
 })
