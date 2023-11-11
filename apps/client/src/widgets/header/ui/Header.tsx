@@ -1,4 +1,4 @@
-import { setModal } from '@/app/layouts/menuSlice.ts'
+import { setModal } from '@/entities/menu/model/menuSlice'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
 import SelectDifficulty from '@/shared/ui/Select/SelectDifficulty.tsx'
