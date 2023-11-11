@@ -5,5 +5,5 @@ import { baseApi } from '@/shared/api'
 
 export const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
-  [menuSlice.name]: menuSlice.reducer
+  [menuSlice.name]: menuSlice.reducer,
 })

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow.tsx'
 
 import styles from './index.module.css'
+import Form from "@/shared/ui/Form/Form.tsx";
 
 export default function MazePage() {
   const [greeting, setGreeting] = useState('')
