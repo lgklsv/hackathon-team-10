@@ -6,6 +6,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 
+import './maze.css'
+
 import { generateMaze, solve } from '@/entities/maze'
 
 import styles from './index.module.css'
@@ -44,22 +46,22 @@ export default function MazePage() {
     const cols = maze[0].length
     const arr = []
     if (maze[i][j][0] === 0) {
-      arr.push('topWall')
+      arr.push('top_wall')
     }
     if (maze[i][j][1] === 0) {
-      arr.push('rightWall')
+      arr.push('right_wall')
     }
     if (maze[i][j][2] === 0) {
-      arr.push('bottomWall')
+      arr.push('bottom_wall')
     }
     if (maze[i][j][3] === 0) {
-      arr.push('leftWall')
+      arr.push('left_wall')
     }
     if (i === rows - 1 && j === cols - 1) {
       arr.push('destination')
     }
     if (i === userPosition[0] && j === userPosition[1]) {
-      arr.push('currentPosition')
+      arr.push('current_position')
     }
     if (cheatMode && solution.has(`${String(i)}-${String(j)}`)) {
       arr.push('sol')
