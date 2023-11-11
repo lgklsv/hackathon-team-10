@@ -1,13 +1,16 @@
 import '@/shared/css/base.css'
 
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
+import { Provider as ReduxProvider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
-import appRouter from './appRouter'
-// import { appStore, persistedStore } from './appStore'
+import { appStore } from './appStore'
+import Routing from './routing'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <ReduxProvider store={appStore}>
-  <RouterProvider router={appRouter} />
-  // {/* </ReduxProvider> */}
+  <ReduxProvider store={appStore}>
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
+  </ReduxProvider>
 )
