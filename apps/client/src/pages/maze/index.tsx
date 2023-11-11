@@ -117,7 +117,6 @@ export default function MazePage() {
           max="40"
           defaultValue="10"
         />
-        ModalWindow
       </div>
       <div className="setting">
         <button type="button" onClick={handleUpdateSettings}>
