@@ -1,0 +1,25 @@
+/* Тут будут миксины, добавил парочку для примера, аутлайн например для стилизации обводки интерактивных элементов */
+@define-mixin outline {
+  /* TODO: change outline color */
+  outline: black solid 1px;
+  outline-offset: 2px;
+}
+
+@define-mixin visually-hidden {
+  position: absolute !important;
+
+  overflow: hidden !important;
+
+  /* stylelint-disable-next-line unit-allowed-list */
+  width: 1px !important;
+  /* stylelint-disable-next-line unit-allowed-list */
+  height: 1px !important;
+  /* stylelint-disable-next-line unit-allowed-list */
+  margin: -1px !important;
+  padding: 0 !important;
+
+  white-space: nowrap !important;
+
+  clip: rect(0, 0, 0, 0) !important;
+  border: 0 !important;
+}
