@@ -1,8 +1,16 @@
 .root {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   width: 100%;
   height: calc(100vh - var(--header-height));
+
+  font-family: sans-serif;
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
 }
