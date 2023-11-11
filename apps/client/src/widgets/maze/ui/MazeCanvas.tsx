@@ -15,8 +15,8 @@ export default function MazeCanvas({ ...props }: MazeCanvasProps) {
 
   return (
     <canvas
-      width={500}
-      height={500}
+      height={600}
+      width={600}
       className={styles.maze}
       ref={canvasRef}
       {...rest}
