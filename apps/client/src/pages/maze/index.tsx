@@ -8,6 +8,7 @@ import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 
 import './maze.css'
 
+import { InstructionModalContent } from '@/entities/instruction'
 import { generateMaze, solve } from '@/entities/maze'
 import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow'
 
@@ -104,7 +105,9 @@ export default function MazePage() {
 
   return (
     <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
-      <ModalWindow />
+      <ModalWindow>
+        <InstructionModalContent />
+      </ModalWindow>
       <div className="setting">
         <label htmlFor="mazeSize">Size of maze (5-40):</label>
         <input
