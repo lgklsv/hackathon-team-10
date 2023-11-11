@@ -7,7 +7,7 @@ import styles from './Header.module.css'
 
 export default function Header() {
   const dispatch = useAppDispatch()
-  const isOpen = useAppSelector((state) => state.menuSlice.isOpen)
+  const isOpen = useAppSelector((state: RootState) => state.menu.isOpen)
 
   return (
     <header className={styles.header}>

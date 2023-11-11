@@ -1,12 +1,14 @@
 import React from 'react'
-import styles from './modal_window.module.css'
-import { Button } from '@/shared/ui/Button/Button.tsx'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { setModal } from '@/entities/menu/model/menuSlice'
 
-const ModalWindow = () => {
+import { setModal } from '@/entities/menu/model/menuSlice'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { Button } from '@/shared/ui/Button/Button.tsx'
+
+import styles from './modal_window.module.css'
+
+function ModalWindow() {
   const dispatch = useAppDispatch()
-  const isOpen = useAppSelector((state) => state.menuSlice.isOpen)
+  const isOpen = useAppSelector((state) => state.menu.isOpen)
   return (
     <div
       className={
