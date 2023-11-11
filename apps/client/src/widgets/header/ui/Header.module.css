@@ -1,0 +1,24 @@
+.header {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+
+  width: 100%;
+  height: var(--header-height);
+
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--bg-secondary);
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+    max-width: var(--desktop);
+    height: 100%;
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}

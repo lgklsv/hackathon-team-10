@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
-export default function RootPage() {
+import styles from './index.module.css'
+
+export default function MazePage() {
   const [greeting, setGreeting] = useState('')
 
   useEffect(() => {
@@ -8,5 +10,12 @@ export default function RootPage() {
       .then((res) => res.json())
       .then((res) => setGreeting(res.message))
   }, [])
-  return <h1>{greeting}</h1>
+
+  return (
+    <div className={styles.root}>
+      <div className={styles.root__maze}>
+        <h1>{greeting}</h1>
+      </div>
+    </div>
+  )
 }

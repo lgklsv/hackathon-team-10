@@ -1,0 +1,8 @@
+.main {
+  max-width: var(--desktop);
+  min-height: calc(100vh - var(--header-height));
+  margin: 0 auto;
+  margin-top: var(--header-height);
+  padding-right: 15px;
+  padding-left: 15px;
+}
