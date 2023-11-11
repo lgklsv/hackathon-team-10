@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
+import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow.tsx'
+
 import styles from './index.module.css'
-import {Button} from "@/shared/ui";
-import ModalWindow from "@/shared/ui/ModalWindow/ModalWindow.tsx";
 
 export default function MazePage() {
   const [greeting, setGreeting] = useState('')
@@ -16,7 +16,7 @@ export default function MazePage() {
   return (
     <div className={styles.root}>
       <div className={styles.root__maze}>
-        < ModalWindow/>
+        <ModalWindow />
         <h1>{greeting}</h1>
       </div>
     </div>

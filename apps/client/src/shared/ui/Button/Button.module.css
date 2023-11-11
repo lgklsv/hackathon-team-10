@@ -71,15 +71,13 @@
 }
 
 .small {
-  padding: 5px 10px;
+  padding: 12px 16px;
 }
 
 .medium {
-  padding: 5px 10px;
-
+  padding: 16px 32px;
 }
 
 .large {
-  padding: 5px 10px;
-
+  padding: 24px 32px;
 }

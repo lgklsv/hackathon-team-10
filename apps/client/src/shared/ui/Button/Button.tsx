@@ -26,7 +26,7 @@ export function Button<C extends ElementType = 'button'>({
   beforeIcon,
   afterIcon,
   children,
-  size = 'medium',
+  size = 'small',
   variant = 'default',
   isLoading = false,
   ...props
