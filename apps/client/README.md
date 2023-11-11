@@ -1,27 +1,72 @@
-# React + TypeScript + Vite
+# Jun Hackathon 11/2023 (team 10) (frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Под капотом
 
-Currently, two official plugins are available:
+- React / TS / RTK
+- PostCSS (с плагинами для нестинга, custom-media, custom-units)
+- [CVA](https://cva.style/docs/getting-started/variants) и [clsx](https://www.npmjs.com/package/clsx) для более удобной стилизации (чтобы можно было удобно комбинировать классы и делать вариации элементов)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Развертывание проекта
 
-## Expanding the ESLint configuration
+Полезные плагины на VS Code для работы с проектом:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [PostCSS](https://marketplace.visualstudio.com/items?itemName=csstools.postcss)
+- [PostCSS Intellisense](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-postcss) (чтобы вернуть поддержку подсказок VScode)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 
-- Configure the top-level `parserOptions` property like this:
+Также рекомендую поставить [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+Stylelint можно настроить так, чтобы при каждом сохранении файла CSS выполнялся автофикс. Для этого нужно найти в настройках пункт "Code Actions on Save" и в конфиге включить следующую настойку:
+
+```json
+"editor.codeActionsOnSave": {
+  "source.fixAll.stylelint": true
+}
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Проект использует пакетный менеджер `npm`.
+
+### Перед тем как начать, установи зависимости
+
+```shell
+cd ./hackathon-team-10
+npm i --frozen-lockfile
+```
+
+### Запуск проекта в Dev Mode
+
+```shell
+npm run dev
+```
+
+### Запуск проекта в Dev Mode для теста на телефоне
+
+```shell
+npm run dev:host
+```
+
+### Сборка проекта
+
+```shell
+npm run build
+```
+
+## Каталоги
+
+Проект на FSD состоит из слоев (layers), каждый слой состоит из слайсов (slices) и каждый слайс состоит из сегментов (segments).
+
+Слои стандартизированы во всех проектах и расположены вертикально. Модули на одном слое могут взаимодействовать лишь с модулями, находящимися на слоях строго ниже.
+
+- **shared** — переиспользуемый код, не имеющий отношения к специфике приложения/бизнеса.(например, UIKit, libs, API)
+- **entities (сущности)** — бизнес-сущности.(например, User, Product, Order)
+- **features (фичи)** — взаимодействия с пользователем, действия, которые несут бизнес-ценность для пользователя.(например, SendComment, AddToCart, UsersSearch)
+- **widgets (виджеты)** — композиционный слой для соединения сущностей и фич в самостоятельные блоки(например, IssuesList, UserProfile).
+- **pages (страницы)** — композиционный слой для сборки полноценных страниц из сущностей, фич и виджетов.
+- **app** — настройки, стили и провайдеры для всего приложения
+
+В свою очередь, каждый слайс состоит из сегментов. Это маленькие модули, главная задача которых — разделить код внутри слайса по техническому назначению. Самые распространенные сегменты — ui, model (store, actions), api и lib (utils/hooks), но в вашем слайсе может не быть каких-то сегментов, могут быть другие, по вашему усмотрению.
+
+Подробнее об FSD - https://feature-sliced.design/ru/

@@ -1,0 +1,15 @@
+:root {
+  /* Здесь будут переменные для юнитов или например для размеров каких то элементов */
+
+  /* Borders (значения можем потом поменять) */
+  --border-radius-xs: 8px;
+  --border-radius-m: 10px;
+  --border-radius-l: 16px;
+  --border-radius-l-plus: 24px;
+  --border-radius-xl: 30px;
+  --border-radius-xxl: 40px;
+  --border-radius-round: 50%;
+
+  /* Units && Layout */
+  --gap: 16px;
+}
