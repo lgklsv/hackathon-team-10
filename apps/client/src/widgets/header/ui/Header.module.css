@@ -22,3 +22,10 @@
     padding-left: 15px;
   }
 }
+.game_buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  position: absolute;
+  left: 10px;
+}

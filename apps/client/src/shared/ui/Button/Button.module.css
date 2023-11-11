@@ -10,7 +10,7 @@
   text-decoration: none;
 
   border: none;
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--border-radius-xs);
 
   &__content {
     display: flex;
@@ -71,13 +71,15 @@
 }
 
 .small {
-  padding: 16px 24px;
+  padding: 5px 10px;
 }
 
 .medium {
-  padding: 16px 32px;
+  padding: 5px 10px;
+
 }
 
 .large {
-  padding: 24px 32px;
+  padding: 5px 10px;
+
 }

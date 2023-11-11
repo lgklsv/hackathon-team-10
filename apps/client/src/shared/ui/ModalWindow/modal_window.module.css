@@ -1,0 +1,41 @@
+.modal_container_close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 400ms ease;
+}
+.modal_container_open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  visibility: visible;
+  opacity: 1;
+  transition: all 400ms ease;
+
+}
+.modal_window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 70px;
+  position: absolute;
+  background: blueviolet;
+  gap: 20px;
+  border-radius: var(--border-radius-xs);
+
+}
