@@ -1,0 +1,43 @@
+.form_container {
+  padding: 50px 70px;
+  background: white;
+  border-radius: var(--border-radius-xs);
+}
+
+form {
+display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  gap: 20px;
+}
+
+input {
+  outline: none;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: var(--border-radius-xs);
+}
+
+.submit_input{
+  margin-top: 20px;
+  background: #4a4980;
+  color: white;
+  border: 1px solid #4a4980;
+  cursor: pointer;
+  transition: all 400ms ease;
+}
+.submit_input:hover{
+  background: #6867af;
+
+}
+label {
+  min-width: 230px;
+}
+label > p {
+  font-size: 12px;
+}
+
+.error_message {
+  font-size: 12px;
+}

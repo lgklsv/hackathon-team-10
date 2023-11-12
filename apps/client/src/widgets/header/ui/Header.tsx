@@ -2,9 +2,12 @@ import Select, { SingleValue } from 'react-select'
 
 import {
   MazeDifficulty,
+  MazeStatus,
   restartGame,
   restartLevel,
   selectIsSolutionMode,
+  selectMazeStatus,
+  setGameRestarting,
   setMazeDifficulty,
   toggleSolutionMode
 } from '@/entities/maze'
@@ -24,13 +27,18 @@ export default function Header() {
   const dispatch = useAppDispatch()
   const isOpen = useAppSelector(selectIsMenuOpen)
   const solutionMode = useAppSelector(selectIsSolutionMode)
+  const status = useAppSelector(selectMazeStatus)
 
   const openModalHandler = () => {
     dispatch(setModal(!isOpen))
   }
 
   const restartGameHandler = () => {
-    dispatch(restartGame())
+    if (status === MazeStatus.playing) {
+      dispatch(setGameRestarting())
+    } else {
+      dispatch(restartGame())
+    }
   }
 
   const restartLevelHandler = () => {
@@ -50,13 +58,30 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav className={styles.header__content}>
-        <Button onClick={restartGameHandler}>Новая игра</Button>
-        <Button onClick={restartLevelHandler}>Сброс уровня</Button>
-        <Button onClick={toggleMazeSolutionHandler}>
-          {solutionMode ? 'Выключить подсказку' : 'Включить подсказку'}
+        <Button
+          onClick={restartGameHandler}
+          variant={status === MazeStatus.playing ? 'default' : 'secondary'}
+        >
+          {status === MazeStatus.playing ? 'Завершить' : 'Новая игра'}{' '}
+        </Button>
+        <Button
+          onClick={restartLevelHandler}
+          disabled={status !== MazeStatus.playing}
+        >
+          Сброс уровня
+        </Button>
+        <Button
+          className={styles.header__hint}
+          onClick={toggleMazeSolutionHandler}
+          disabled={status !== MazeStatus.playing}
+        >
+          {solutionMode && status === MazeStatus.playing
+            ? 'Выключить подсказку'
+            : 'Включить подсказку'}
         </Button>
         <Button onClick={openModalHandler}>Как играть?</Button>
         <Select
+          className={styles.header__select}
           defaultValue={options[0]}
           options={options}
           onChange={changeDifficultyHandler}

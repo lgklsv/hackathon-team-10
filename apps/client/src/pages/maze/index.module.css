@@ -17,12 +17,7 @@
 
 .maze {
   border-collapse: collapse;
-  margin-top: 15px;
-
-  td {
-    width: 20px;
-    height: 20px;
-  }
+  transition: all;
 }
 
 .wall {
@@ -44,26 +39,14 @@
 }
 
 .destination {
-  div {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    background: springgreen;
-    border-radius: 50%;
+  div::before {
+    content: '🧒';
   }
 }
 
 .position {
-  div {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    background: salmon;
-    border-radius: 50%;
+  div::before {
+    content: '👫';
   }
 }
 
@@ -78,7 +61,6 @@
     border-radius: 50%;
   }
 }
-
 
 .info {
   width: 100%;

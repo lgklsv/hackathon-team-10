@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { KeyboardEvent, useEffect, useMemo } from 'react'
 
@@ -9,7 +8,6 @@ import { InstructionModalContent } from '@/entities/instruction'
 import {
   MazeStatus,
   movePlayer,
-  restartGame,
   selectIsSolutionMode,
   selectMaze,
   selectMazeDifficulty,
@@ -18,9 +16,11 @@ import {
   setMazeStatus,
   solve
 } from '@/entities/maze'
+import { setVictoryModal } from '@/entities/victory_modal/model/victoryModalSlice'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow'
+import VictoryWindow from '@/shared/ui/VictoryWindow/VictoryWindow.tsx'
 
 import styles from './index.module.css'
 
@@ -74,21 +74,40 @@ export default function MazePage() {
     dispatch(movePlayer(e.code))
   }
 
-  const resetGameHandler = () => {
-    dispatch(restartGame())
+  useEffect(() => {
+    if (mazeStatus === MazeStatus.won) {
+      dispatch(setVictoryModal(true))
+    }
+  }, [mazeStatus])
+
+  let screenHeight = Math.min(window.innerHeight, window.innerWidth) - 70 // 70px is our header and another 70 for some margins
+
+  if (window.innerHeight < window.innerWidth) {
+    screenHeight -= 70
   }
+
+  const cellSize = Math.floor(screenHeight / size)
 
   return (
     <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
       <ModalWindow>
         <InstructionModalContent />
       </ModalWindow>
+      <VictoryWindow />
       <table className={styles.maze}>
         <tbody>
           {maze.map((row, i) => (
             <tr key={`row-${i}`}>
               {row.map((_, j) => (
-                <td key={`cell-${i}-${j}`} className={makeClassName(i, j)}>
+                <td
+                  key={`cell-${i}-${j}`}
+                  className={makeClassName(i, j)}
+                  style={{
+                    width: cellSize,
+                    height: cellSize,
+                    fontSize: cellSize * 0.7
+                  }}
+                >
                   <div />
                 </td>
               ))}
@@ -96,11 +115,6 @@ export default function MazePage() {
           ))}
         </tbody>
       </table>
-      {mazeStatus === MazeStatus.won && (
-        <div className={styles.info} onClick={resetGameHandler}>
-          <p>you won (click here to play again)</p>
-        </div>
-      )}
     </div>
   )
 }
