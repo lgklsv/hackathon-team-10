@@ -10,6 +10,10 @@
   font-family: sans-serif;
   text-align: center;
 
+  @media (--m-viewport) {
+    justify-content: space-evenly;
+  }
+
   &:focus {
     outline: none;
   }

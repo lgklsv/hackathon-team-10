@@ -4,6 +4,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { KeyboardEvent, useEffect, useMemo } from 'react'
 
+import { MobileControls } from '@/entities/controls'
 import { InstructionModalContent } from '@/entities/instruction'
 import {
   MazeStatus,
@@ -115,6 +116,7 @@ export default function MazePage() {
           ))}
         </tbody>
       </table>
+      <MobileControls />
     </div>
   )
 }

@@ -1,0 +1,36 @@
+.controls {
+  display: none;
+  grid-template-columns: 70px 70px 70px;
+  grid-template-rows: 70px 70px;
+  gap: 0.5--gap;
+  place-self: center center;
+
+  @media (--m-viewport) {
+    display: grid;
+    justify-content: space-evenly;
+  }
+
+  &__up {
+    grid-column-start: 2;
+  }
+
+  &__down {
+    grid-column-start: 2;
+    grid-row-start: 2;
+  }
+
+  &__left {
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+
+  &__right {
+    grid-column-start: 3;
+    grid-row-start: 2;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}

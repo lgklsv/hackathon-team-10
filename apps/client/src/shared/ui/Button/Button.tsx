@@ -10,7 +10,7 @@ import css from './Button.module.css'
 type ButtonStyleProps = {
   beforeIcon?: JSX.Element
   afterIcon?: JSX.Element
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large' | 'icon'
   variant?: 'default' | 'primary' | 'secondary'
   isLoading?: boolean
 }
