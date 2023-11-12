@@ -1,6 +1,13 @@
 import Select, { SingleValue } from 'react-select'
 
-import { MazeDifficulty, setMazeDifficulty } from '@/entities/maze'
+import {
+  MazeDifficulty,
+  restartGame,
+  restartLevel,
+  selectIsSolutionMode,
+  setMazeDifficulty,
+  toggleSolutionMode
+} from '@/entities/maze'
 import { selectIsMenuOpen, setModal } from '@/entities/menu'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
@@ -16,9 +23,22 @@ const options = [
 export default function Header() {
   const dispatch = useAppDispatch()
   const isOpen = useAppSelector(selectIsMenuOpen)
+  const solutionMode = useAppSelector(selectIsSolutionMode)
 
   const openModalHandler = () => {
     dispatch(setModal(!isOpen))
+  }
+
+  const restartGameHandler = () => {
+    dispatch(restartGame())
+  }
+
+  const restartLevelHandler = () => {
+    dispatch(restartLevel())
+  }
+
+  const toggleMazeSolutionHandler = () => {
+    dispatch(toggleSolutionMode())
   }
 
   const changeDifficultyHandler = (
@@ -30,10 +50,14 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav className={styles.header__content}>
-        <Button>Начать игру</Button>
-        <Button>Сброс уровня</Button>
+        <Button onClick={restartGameHandler}>Новая игра</Button>
+        <Button onClick={restartLevelHandler}>Сброс уровня</Button>
+        <Button onClick={toggleMazeSolutionHandler}>
+          {solutionMode ? 'Выключить подсказку' : 'Включить подсказку'}
+        </Button>
         <Button onClick={openModalHandler}>Как играть?</Button>
         <Select
+          defaultValue={options[0]}
           options={options}
           onChange={changeDifficultyHandler}
           placeholder="Выберите сложность"
