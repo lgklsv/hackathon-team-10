@@ -43,6 +43,7 @@ export const mazeSlice = createSlice({
 
       const size = payload
       state.maze = generateMaze(size, size)
+      state.solutionMode = false
 
       state.status = MazeStatus.playing
     },

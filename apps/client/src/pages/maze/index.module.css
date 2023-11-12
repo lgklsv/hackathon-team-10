@@ -15,3 +15,82 @@
   }
 }
 
+.maze {
+  border-collapse: collapse;
+  margin-top: 15px;
+
+  td {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.wall {
+  &_top {
+    border-top: 2px solid black;
+  }
+
+  &_left {
+    border-left: 2px solid black;
+  }
+
+  &_right {
+    border-right: 2px solid black;
+  }
+
+  &_bottom {
+    border-bottom: 2px solid black;
+  }
+}
+
+.destination {
+  div {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: springgreen;
+    border-radius: 50%;
+  }
+}
+
+.position {
+  div {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: salmon;
+    border-radius: 50%;
+  }
+}
+
+.sol {
+  div {
+    display: inline-block;
+
+    width: 50%;
+    height: 50%;
+
+    background: peachpuff;
+    border-radius: 50%;
+  }
+}
+
+
+.info {
+  width: 100%;
+  margin-top: 20px;
+  padding: 3px;
+
+  font-size: 20px;
+
+  background: cornsilk;
+
+  p {
+    color: forestgreen;
+    text-transform: uppercase;
+  }
+}

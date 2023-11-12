@@ -5,8 +5,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { KeyboardEvent, useEffect, useMemo } from 'react'
 
-import './maze.css'
-
 import { InstructionModalContent } from '@/entities/instruction'
 import {
   MazeStatus,
@@ -21,6 +19,7 @@ import {
   solve
 } from '@/entities/maze'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { cn } from '@/shared/lib'
 import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow'
 
 import styles from './index.module.css'
@@ -55,36 +54,23 @@ export default function MazePage() {
   }, [playerPosition[0], playerPosition[1]])
 
   const makeClassName = (i: number, j: number) => {
-    const rows = maze.length
-    const cols = maze[0].length
-
-    const arr = []
-    if (maze[i][j][0] === 0) {
-      arr.push('top_wall')
-    }
-    if (maze[i][j][1] === 0) {
-      arr.push('right_wall')
-    }
-    if (maze[i][j][2] === 0) {
-      arr.push('bottom_wall')
-    }
-    if (maze[i][j][3] === 0) {
-      arr.push('left_wall')
-    }
-    if (i === rows - 1 && j === cols - 1) {
-      arr.push('destination')
-    }
-    if (i === playerPosition[0] && j === playerPosition[1]) {
-      arr.push('current_position')
-    }
-    if (solutionMode && solution.has(`${String(i)}-${String(j)}`)) {
-      arr.push('sol')
-    }
-    return arr.join(' ')
+    const cellClassName = cn({
+      [styles.wall_top]: maze[i][j][0] === 0,
+      [styles.wall_right]: maze[i][j][1] === 0,
+      [styles.wall_bottom]: maze[i][j][2] === 0,
+      [styles.wall_left]: maze[i][j][3] === 0,
+      [styles.destination]: i === maze.length - 1 && j === maze[0].length - 1,
+      [styles.position]: i === playerPosition[0] && j === playerPosition[1],
+      [styles.sol]:
+        solutionMode &&
+        solution.has(`${String(i)}-${String(j)}`) &&
+        !(i === playerPosition[0] && j === playerPosition[1]) &&
+        !(i === maze.length - 1 && j === maze[0].length - 1)
+    })
+    return cellClassName
   }
 
   const handleMove = (e: KeyboardEvent) => {
-    e.preventDefault()
     dispatch(movePlayer(e.code))
   }
 
@@ -97,7 +83,7 @@ export default function MazePage() {
       <ModalWindow>
         <InstructionModalContent />
       </ModalWindow>
-      <table id="maze">
+      <table className={styles.maze}>
         <tbody>
           {maze.map((row, i) => (
             <tr key={`row-${i}`}>
@@ -111,7 +97,7 @@ export default function MazePage() {
         </tbody>
       </table>
       {mazeStatus === MazeStatus.won && (
-        <div className="info" onClick={resetGameHandler}>
+        <div className={styles.info} onClick={resetGameHandler}>
           <p>you won (click here to play again)</p>
         </div>
       )}
