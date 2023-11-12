@@ -49,7 +49,7 @@ function VictoryWindow() {
         <Confetti active={confetti} config={config} />
         <h3>Поздравляем!</h3>
         <p>Пускай это было непросто, но Вы справились!</p>
-        <Button size="large" onClick={newGameHandler}>
+        <Button size="medium" onClick={newGameHandler}>
           <h2>Продолжить</h2>
         </Button>
       </div>

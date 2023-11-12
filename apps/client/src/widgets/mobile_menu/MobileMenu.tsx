@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Select, { SingleValue } from 'react-select'
 
 import {
@@ -15,8 +17,7 @@ import { selectIsMenuOpen, setModal } from '@/entities/menu'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
 
-import styles from './Header.module.css'
-
+import styles from './MobileMenu.module.css'
 
 const options = [
   { value: MazeDifficulty.easy, label: 'Легко' },
@@ -24,14 +25,16 @@ const options = [
   { value: MazeDifficulty.hard, label: 'Тяжело' }
 ]
 
-export default function Header() {
+function MobileMenu() {
   const dispatch = useAppDispatch()
   const isOpen = useAppSelector(selectIsMenuOpen)
   const solutionMode = useAppSelector(selectIsSolutionMode)
   const status = useAppSelector(selectMazeStatus)
+  const [openMenu, setOpenMenu] = React.useState(false)
 
   const openModalHandler = () => {
     dispatch(setModal(!isOpen))
+    setOpenMenu(false)
   }
 
   const restartGameHandler = () => {
@@ -44,6 +47,7 @@ export default function Header() {
 
   const restartLevelHandler = () => {
     dispatch(restartLevel())
+    setOpenMenu(false)
   }
 
   const toggleMazeSolutionHandler = () => {
@@ -56,41 +60,52 @@ export default function Header() {
     if (e?.value) dispatch(setMazeDifficulty(e.value))
   }
 
-
-
   return (
-    <header className={styles.header}>
-      <nav className={styles.header__content}>
+    <>
+      <div className={styles.open_menu}>
         <Button
           onClick={restartGameHandler}
           variant={status === MazeStatus.playing ? 'default' : 'secondary'}
         >
-          {status === MazeStatus.playing ? 'Завершить' : 'Новая игра'}{' '}
+          {status === MazeStatus.playing ? 'Завершить' : 'Новая игра'}
         </Button>
-        <Button
-          onClick={restartLevelHandler}
-          disabled={status !== MazeStatus.playing}
-        >
-          Сброс уровня
-        </Button>
-        <Button
-          className={styles.header__hint}
-          onClick={toggleMazeSolutionHandler}
-          disabled={status !== MazeStatus.playing}
-        >
-          {solutionMode && status === MazeStatus.playing
-            ? 'Выключить подсказку'
-            : 'Включить подсказку'}
-        </Button>
-        <Button onClick={openModalHandler}>Как играть?</Button>
         <Select
-          className={styles.header__select}
+          className={styles.select}
           defaultValue={options[0]}
           options={options}
           onChange={changeDifficultyHandler}
           placeholder="Выберите сложность"
         />
-      </nav>
-    </header>
+        <Button
+          onClick={() => {
+            setOpenMenu(!openMenu)
+          }}
+        >
+          {!openMenu ? 'Открыть меню' : 'Закрыть меню'}
+        </Button>
+      </div>
+      <header className={openMenu ? styles.header_open : styles.header_close}>
+        <nav className={styles.header__content}>
+          <Button
+            onClick={restartLevelHandler}
+            disabled={status !== MazeStatus.playing}
+          >
+            Сброс уровня
+          </Button>
+          <Button
+            className={styles.header__hint}
+            onClick={toggleMazeSolutionHandler}
+            disabled={status !== MazeStatus.playing}
+          >
+            {solutionMode && status === MazeStatus.playing
+              ? 'Выключить подсказку'
+              : 'Включить подсказку'}
+          </Button>
+          <Button onClick={openModalHandler}>Как играть?</Button>
+        </nav>
+      </header>
+    </>
   )
 }
+
+export default MobileMenu

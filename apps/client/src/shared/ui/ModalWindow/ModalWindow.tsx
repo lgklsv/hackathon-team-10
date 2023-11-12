@@ -23,7 +23,9 @@ function ModalWindow({ children }: PropsWithChildren) {
     >
       <div className={styles.modal_window}>
         {children}
-        <Button onClick={openModalHandler}>Всё понятно</Button>
+        <Button size="medium" onClick={openModalHandler}>
+          Всё понятно
+        </Button>
       </div>
     </div>
   )
