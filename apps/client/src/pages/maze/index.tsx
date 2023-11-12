@@ -31,6 +31,7 @@ export default function MazePage() {
   const maze = useAppSelector(selectMaze)
   const mazeStatus = useAppSelector(selectMazeStatus)
   const solutionMode = useAppSelector(selectIsSolutionMode)
+  const isOpen = useAppSelector((state) => state.victoryModal.isVictoryModal)
 
   const solution = useMemo(() => {
     const s = new Set()
@@ -87,13 +88,12 @@ export default function MazePage() {
   }
 
   const cellSize = Math.floor(screenHeight / size)
-
   return (
     <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
       <ModalWindow>
         <InstructionModalContent />
       </ModalWindow>
-      <VictoryWindow />
+      {isOpen ? <VictoryWindow /> : null}
       <table className={styles.maze}>
         <tbody>
           {maze.map((row, i) => (

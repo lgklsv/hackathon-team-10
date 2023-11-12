@@ -44,18 +44,16 @@ function VictoryWindow() {
   }
 
   return (
-    isOpen && (
-      <div className={styles.container}>
-        <div className={styles.victory_window}>
-          <Confetti active={confetti} config={config} />
-          <h3>Поздравляем!</h3>
-          <p>Пускай это было непросто, но Вы справились!</p>
-          <Button size="large" onClick={newGameHandler}>
-            <h2>Продолжить</h2>
-          </Button>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.victory_window}>
+        <Confetti active={confetti} config={config} />
+        <h3>Поздравляем!</h3>
+        <p>Пускай это было непросто, но Вы справились!</p>
+        <Button size="large" onClick={newGameHandler}>
+          <h2>Продолжить</h2>
+        </Button>
       </div>
-    )
+    </div>
   )
 }
 
