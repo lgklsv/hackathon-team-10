@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin: 0 auto;
+  width: 80vw;
+  height: 60vh;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: var(--border-radius-xs);
+}
+
+
+.victory_window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  border-radius: var(--border-radius-xs);
+  width: 60vw;
+  height: 40ch;
+}
+
+h3{
+  font-size: clamp(20px, 5vw, 36px);
+  margin-bottom: 20px
+}
+
+p{
+  text-align: center;
+  font-size: clamp(14px, 5vw, 26px);
+  margin-bottom: 40px;
+}
