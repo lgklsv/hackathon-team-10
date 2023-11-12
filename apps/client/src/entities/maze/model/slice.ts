@@ -10,7 +10,8 @@ export enum MazeDifficulty {
 
 export enum MazeStatus {
   playing = 'playing',
-  won = 'won'
+  won = 'won',
+  restarting = 'restarting'
 }
 
 type PlayerCoordinates = [number, number]
@@ -100,6 +101,10 @@ export const mazeSlice = createSlice({
     toggleSolutionMode: (state) => {
       state.solutionMode = !state.solutionMode
     },
+    setGameRestarting: (state) => {
+      state.solutionMode = true
+      state.status = MazeStatus.restarting
+    },
     resetMaze: () => initialState
   }
 })
@@ -112,5 +117,6 @@ export const {
   setMazeStatus,
   restartGame,
   restartLevel,
-  toggleSolutionMode
+  toggleSolutionMode,
+  setGameRestarting
 } = mazeSlice.actions

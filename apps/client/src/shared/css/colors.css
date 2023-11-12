@@ -1,7 +1,8 @@
 :root {
   /* Это просто пример переменных, тут будет писать все наши переменные для цветов */
   --text-color: #fff;
-  --accent-color: #ffba00;
+  --text-color-accent: #282828;
+  --accent-color: peachpuff;
   --bg-primary: #6867af;
   --bg-secondary: #4a4980;
 }

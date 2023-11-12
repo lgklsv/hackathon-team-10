@@ -17,6 +17,7 @@
 
 .maze {
   border-collapse: collapse;
+  transition: all;
 }
 
 .wall {
@@ -39,7 +40,7 @@
 
 .destination {
   div::before {
-    content: '🧒🏼';
+    content: '🧒';
   }
 }
 

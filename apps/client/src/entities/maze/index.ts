@@ -13,6 +13,7 @@ export {
   movePlayer,
   restartGame,
   restartLevel,
+  setGameRestarting,
   setMazeDifficulty,
   setMazeStatus,
   setPlayerPosition,
