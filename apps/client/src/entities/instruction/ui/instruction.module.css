@@ -1,12 +1,24 @@
 .instruction {
-  color: antiquewhite;
-  font-weight: 600;
   font-size: medium;
+  font-weight: 600;
   line-height: 2;
+  color: antiquewhite;
 }
 
 .list {
-  text-align: left;
   margin-top: 1.5em;
-  line-height: 3;
+  line-height: normal;
+  text-align: left;
+
+  li {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
 }
