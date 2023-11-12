@@ -9,7 +9,8 @@ import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 import './maze.css'
 
 import { InstructionModalContent } from '@/entities/instruction'
-import { generateMaze, solve } from '@/entities/maze'
+import { generateMaze, selectMazeDifficulty, solve } from '@/entities/maze'
+import { useAppSelector } from '@/shared/hooks'
 import ModalWindow from '@/shared/ui/ModalWindow/ModalWindow'
 
 import styles from './index.module.css'
@@ -17,8 +18,8 @@ import styles from './index.module.css'
 export default function MazePage() {
   const [gameId, setGameId] = useState(1)
   const [status, setStatus] = useState('playing')
+  const size = useAppSelector(selectMazeDifficulty)
 
-  const [size, setSize] = useState(10)
   const [cheatMode, setCheatMode] = useState(false)
 
   const [userPosition, setUserPosition] = useState([0, 0])
@@ -94,10 +95,6 @@ export default function MazePage() {
   }
 
   const handleUpdateSettings = () => {
-    const input = document.querySelector(
-      "input[name='mazeSize']"
-    ) as HTMLInputElement
-    setSize(Number(input.value))
     setUserPosition([0, 0])
     setStatus('playing')
     setGameId(gameId + 1)
@@ -108,16 +105,6 @@ export default function MazePage() {
       <ModalWindow>
         <InstructionModalContent />
       </ModalWindow>
-      <div className="setting">
-        <label htmlFor="mazeSize">Size of maze (5-40):</label>
-        <input
-          type="number"
-          name="mazeSize"
-          min="5"
-          max="40"
-          defaultValue="10"
-        />
-      </div>
       <div className="setting">
         <button type="button" onClick={handleUpdateSettings}>
           Restart game with new settings

@@ -1,2 +1,3 @@
 export * from './lib'
-export { mazeSlice } from './model/slice'
+export { selectMazeDifficulty } from './model/selectors'
+export { MazeDifficulty, mazeSlice, setMazeDifficulty } from './model/slice'

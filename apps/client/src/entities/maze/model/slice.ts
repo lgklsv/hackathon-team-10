@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-enum MazeDifficulty {
+export enum MazeDifficulty {
   easy = 10,
   medium = 15,
   hard = 25
@@ -18,8 +18,11 @@ export const mazeSlice = createSlice({
   name: 'maze',
   initialState,
   reducers: {
+    setMazeDifficulty: (state, { payload }: PayloadAction<MazeDifficulty>) => {
+      state.difficulty = payload
+    },
     resetMaze: () => initialState
   }
 })
 
-export const { resetMaze } = mazeSlice.actions
+export const { resetMaze, setMazeDifficulty } = mazeSlice.actions

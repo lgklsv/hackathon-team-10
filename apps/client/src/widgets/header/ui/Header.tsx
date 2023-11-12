@@ -1,5 +1,6 @@
-import Select from 'react-select'
+import Select, { SingleValue } from 'react-select'
 
+import { MazeDifficulty, setMazeDifficulty } from '@/entities/maze'
 import { selectIsMenuOpen, setModal } from '@/entities/menu'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
@@ -7,9 +8,9 @@ import { Button } from '@/shared/ui'
 import styles from './Header.module.css'
 
 const options = [
-  { value: 'easy', label: 'Легко' },
-  { value: 'medium', label: 'Средне' },
-  { value: 'hard', label: 'Тяжело' }
+  { value: MazeDifficulty.easy, label: 'Легко' },
+  { value: MazeDifficulty.medium, label: 'Средне' },
+  { value: MazeDifficulty.hard, label: 'Тяжело' }
 ]
 
 export default function Header() {
@@ -20,13 +21,23 @@ export default function Header() {
     dispatch(setModal(!isOpen))
   }
 
+  const changeDifficultyHandler = (
+    e: SingleValue<{ value: MazeDifficulty; label: string }>
+  ) => {
+    if (e?.value) dispatch(setMazeDifficulty(e.value))
+  }
+
   return (
     <header className={styles.header}>
       <nav className={styles.header__content}>
         <Button>Начать игру</Button>
         <Button>Сброс уровня</Button>
         <Button onClick={openModalHandler}>Как играть?</Button>
-        <Select options={options} placeholder="Выберите сложность" />
+        <Select
+          options={options}
+          onChange={changeDifficultyHandler}
+          placeholder="Выберите сложность"
+        />
       </nav>
     </header>
   )
