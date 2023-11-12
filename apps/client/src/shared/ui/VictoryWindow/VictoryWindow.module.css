@@ -1,0 +1,39 @@
+.container {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 80vw;
+  height: 60vh;
+  margin: 0 auto;
+
+  background: rgb(0 0 0 / 50%);
+  border-radius: var(--border-radius-xs);
+}
+
+.victory_window {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  width: 60vw;
+  height: 40ch;
+
+  background: white;
+  border-radius: var(--border-radius-xs);
+}
+
+h3 {
+  margin-bottom: 20px;
+  font-size: clamp(20px, 5vw, 36px);
+}
+
+p {
+  margin-bottom: 40px;
+  font-size: clamp(14px, 5vw, 26px);
+  text-align: center;
+}
