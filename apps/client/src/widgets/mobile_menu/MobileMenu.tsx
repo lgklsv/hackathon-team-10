@@ -1,5 +1,6 @@
-import Select, { SingleValue } from 'react-select'
-
+import React from 'react';
+import styles from "@/widgets/mobile_menu/mobile_menu.module.css";
+import {Button} from "@/shared/ui";
 import {
   MazeDifficulty,
   MazeStatus,
@@ -7,15 +8,11 @@ import {
   restartLevel,
   selectIsSolutionMode,
   selectMazeStatus,
-  setGameRestarting,
-  setMazeDifficulty,
-  toggleSolutionMode
-} from '@/entities/maze'
-import { selectIsMenuOpen, setModal } from '@/entities/menu'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { Button } from '@/shared/ui'
-
-import styles from './Header.module.css'
+  setGameRestarting, setMazeDifficulty, toggleSolutionMode
+} from "@/entities/maze";
+import Select, {SingleValue} from "react-select";
+import {useAppDispatch, useAppSelector} from "@/shared/hooks";
+import {selectIsMenuOpen, setModal} from "@/entities/menu";
 
 
 const options = [
@@ -23,8 +20,7 @@ const options = [
   { value: MazeDifficulty.medium, label: 'Средне' },
   { value: MazeDifficulty.hard, label: 'Тяжело' }
 ]
-
-export default function Header() {
+const MobileMenu = () => {
   const dispatch = useAppDispatch()
   const isOpen = useAppSelector(selectIsMenuOpen)
   const solutionMode = useAppSelector(selectIsSolutionMode)
@@ -56,10 +52,18 @@ export default function Header() {
     if (e?.value) dispatch(setMazeDifficulty(e.value))
   }
 
+  const [openMenu, setOpenMenu] = React.useState(false)
 
 
   return (
-    <header className={styles.header}>
+    <>
+      <div className={styles.open_menu}>
+        <Button
+          onClick={()=>{setOpenMenu(!openMenu)}}>
+          <h3>{!openMenu ? 'Открыть меню' : 'Закрыть меню'}</h3>
+        </Button>
+      </div>
+      <header className={openMenu ? styles.header_open : styles.header_close}>
       <nav className={styles.header__content}>
         <Button
           onClick={restartGameHandler}
@@ -92,5 +96,8 @@ export default function Header() {
         />
       </nav>
     </header>
+    </>
   )
-}
+};
+
+export default MobileMenu;

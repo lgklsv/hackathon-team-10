@@ -1,0 +1,49 @@
+.header_open {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  padding: 20px 0;
+  height: 630px;
+  position: absolute;
+  background: #6867af;
+
+}
+
+.header_close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  overflow: hidden;
+  height: 0;
+  visibility: hidden;
+  position: absolute;
+
+
+}
+
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+  height: auto;
+  width: 100vw;
+  background: #6867af;
+  margin-top: 20px;
+}
+
+
+
+.open_menu {
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+
