@@ -25,10 +25,16 @@
   justify-content: center;
 
   width: 60vw;
-  height: 40ch;
+  height: 40vh;
+  padding: 16px;
 
   background: white;
   border-radius: var(--border-radius-xs);
+
+  @media (--m-viewport) {
+    width: 85%;
+    height: auto;
+  }
 }
 
 h3 {
@@ -40,4 +46,8 @@ p {
   margin-bottom: 40px;
   font-size: clamp(14px, 5vw, 26px);
   text-align: center;
+
+  @media (--m-viewport) {
+    margin-bottom: 20px;
+  }
 }
