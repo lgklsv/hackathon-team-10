@@ -36,17 +36,15 @@ function VictoryWindow() {
       }, 7000)
       return () => clearTimeout(confettiTimeout)
     }
-  }, [])
+  }, [isOpen])
 
   const newGameHandler = () => {
     dispatch(setVictoryModal(!isOpen))
     dispatch(restartGame())
   }
 
-
   return (
-    <>
-      isOpen ? <div className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.victory_window}>
         <Confetti active={confetti} config={config} />
         <h3>Поздравляем!</h3>
@@ -56,7 +54,6 @@ function VictoryWindow() {
         </Button>
       </div>
     </div>
-    </>
   )
 }
 
