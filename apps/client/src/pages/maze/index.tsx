@@ -78,6 +78,14 @@ export default function MazePage() {
     dispatch(restartGame())
   }
 
+  let screenHeight = Math.min(window.innerHeight, window.innerWidth) - 70 // 70px is our header and another 70 for some margins
+
+  if (window.innerHeight < window.innerWidth) {
+    screenHeight -= 70
+  }
+
+  const cellSize = Math.floor(screenHeight / size)
+
   return (
     <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
       <ModalWindow>
@@ -88,7 +96,15 @@ export default function MazePage() {
           {maze.map((row, i) => (
             <tr key={`row-${i}`}>
               {row.map((_, j) => (
-                <td key={`cell-${i}-${j}`} className={makeClassName(i, j)}>
+                <td
+                  key={`cell-${i}-${j}`}
+                  className={makeClassName(i, j)}
+                  style={{
+                    width: cellSize,
+                    height: cellSize,
+                    fontSize: cellSize * 0.7
+                  }}
+                >
                   <div />
                 </td>
               ))}
