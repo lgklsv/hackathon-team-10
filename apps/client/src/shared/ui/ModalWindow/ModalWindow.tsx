@@ -15,8 +15,6 @@ function ModalWindow({ children }: PropsWithChildren) {
     dispatch(setModal(!isOpen))
   }
 
-  console.log(isOpen)
-
   return (
     <div
       className={

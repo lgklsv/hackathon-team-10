@@ -1,8 +1,7 @@
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { KeyboardEvent, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { MobileControls } from '@/entities/controls'
 import { InstructionModalContent } from '@/entities/instruction'
@@ -72,9 +71,17 @@ export default function MazePage() {
     return cellClassName
   }
 
-  const handleMove = (e: KeyboardEvent) => {
+  const handleMove = (e: globalThis.KeyboardEvent) => {
     dispatch(movePlayer(e.code))
   }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleMove)
+
+    return () => {
+      document.removeEventListener('keydown', handleMove)
+    }
+  }, [])
 
   useEffect(() => {
     if (mazeStatus === MazeStatus.won) {
@@ -89,8 +96,9 @@ export default function MazePage() {
   }
 
   const cellSize = Math.floor(screenHeight / size)
+
   return (
-    <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
+    <div className={styles.root}>
       <ModalWindow>
         <InstructionModalContent />
       </ModalWindow>
