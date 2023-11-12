@@ -42,7 +42,7 @@
   &:focus-visible {
     @mixin outline;
 
-    border-radius: var(--border-radius-xl);
+    border-radius: var(--border-radius-xs);
   }
 
   &:disabled {
