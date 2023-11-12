@@ -4,6 +4,10 @@
 
 Простая игра-лабиринт, в которой родители (игрок) должны пройти по лабиринту и найти ребенка.
 
+## Деплой 
+
+https://hackathon-team-10.vercel.app
+
 ## Команда
 
 Олег - https://t.me/helgiology
@@ -62,10 +66,12 @@
 
 ```bash
 # Склонируйте репозиторий
-$ git clone https://github.com/lgklsv/shelfie.git
+$ git clone https://github.com/lgklsv/hackathon-team-10.git
 
 # Зайдите в папку репозитория
-$ npm install
+$ cd hackathon-team-10
+
+# Создайте в корне монорепы .env файл такой же как .env.example
 
 # Установите зависимости
 $ npm install
