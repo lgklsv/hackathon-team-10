@@ -53,6 +53,7 @@ export default function MazePage() {
     }
   }, [playerPosition[0], playerPosition[1]])
 
+
   const makeClassName = (i: number, j: number) => {
     const cellClassName = cn({
       [styles.wall_top]: maze[i][j][0] === 0,
@@ -87,13 +88,13 @@ export default function MazePage() {
   }
 
   const cellSize = Math.floor(screenHeight / size)
-
+  const isOpen = useAppSelector((state) => state.victoryModal.isVictoryModal)
   return (
     <div className={styles.root} onKeyDown={handleMove} tabIndex={-1}>
       <ModalWindow>
         <InstructionModalContent />
       </ModalWindow>
-      <VictoryWindow />
+      { isOpen ? <VictoryWindow/> : null}
       <table className={styles.maze}>
         <tbody>
           {maze.map((row, i) => (
